@@ -24,6 +24,8 @@ signInWithEmailAndPassword(auth, email, password)
     // Signed in 
     const user = userCredential.user;
     console.log(user.uid)
+    // Redirige à la connexion sur la page admin.html si, la connexion est OK
+    window.location.href = "../back-office/admin.html"
   })
   .catch((error) => {
     const errorCode = error.code;
