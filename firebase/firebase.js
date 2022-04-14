@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -31,5 +31,20 @@ signInWithEmailAndPassword(auth, email, password)
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log('Erreur')
+  });
+}
+
+// Dis si l'utilisateur est bien connecté
+export function isLogin(){
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+    //Si connecté
+      const uid = user.uid;
+      // ...
+      console.log(uid)
+    } else {
+      // Si non connecté
+      console.log('Voleur : pas connecté!')
+    }
   });
 }
